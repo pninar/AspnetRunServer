@@ -1,6 +1,7 @@
 ﻿using AspnetRun.Application.Interfaces;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
+using AspnetRun.Web.ViewModels.Product;
 using AutoMapper;
 using System;
 using System.Collections.Generic;

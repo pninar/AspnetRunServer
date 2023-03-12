@@ -37,8 +37,15 @@ namespace AspnetRun.Web
         public void ConfigureServices(IServiceCollection services)
         {            
             // aspnetrun dependencies
-            ConfigureAspnetRunServices(services);            
-
+            ConfigureAspnetRunServices(services);
+            // Add Cors
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+            services.AddControllers();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -66,12 +73,15 @@ namespace AspnetRun.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            // Enable Cors// must be before UseRouting
+            app.UseCors("MyPolicy");
             app.UseRouting();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
 

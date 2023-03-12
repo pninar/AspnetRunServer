@@ -78,6 +78,16 @@ namespace AspnetRun.Infrastructure.Repository.Base
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
+        public async Task<T> GetByIdAsync(int id, ISpecification<T> spec)
+        {
+            var query = _dbContext.Set<T>()
+                .Where(item => item.Id == id)
+                .AsQueryable();
+
+            var specificationResult = SpecificationEvaluator<T>.GetQuery(query, spec);
+            return await specificationResult.FirstOrDefaultAsync();
+        }
+
         public async Task<T> AddAsync(T entity)
         {
             _dbContext.Set<T>().Add(entity);

@@ -47,5 +47,11 @@ namespace AspnetRun.Infrastructure.Repository
                 .Where(x => x.CategoryId==categoryId)
                 .ToListAsync();
         }
+
+        public override async Task<Product> GetByIdAsync(int id)
+        {
+            var spec = new ProductWithCategorySpecification();
+            return await base.GetByIdAsync(id, spec);
+        }
     }
 }
