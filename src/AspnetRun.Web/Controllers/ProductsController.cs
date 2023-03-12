@@ -1,5 +1,5 @@
 ﻿using AspnetRun.Web.Interfaces;
-using AspnetRun.Web.ViewModels.Product;
+using AspnetRun.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -50,9 +50,9 @@ namespace AspnetRun.Web.Controllers
 
         // PUT api/<ProductController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] ProductViewModel productToModify)
+        public async void Put(int id, [FromBody] ProductViewModel productToModify)
         {
-             _productPageService.UpdateProduct(productToModify);
+            await _productPageService.UpdateProduct(productToModify);
         }
 
         // DELETE api/<ProductController>/5
@@ -60,7 +60,7 @@ namespace AspnetRun.Web.Controllers
         public async void  Delete(int id)
         {
             var product = await _productPageService.GetProductById(id);
-            _productPageService.DeleteProduct(product);
+            await _productPageService.DeleteProduct(product);
         }
     }
 }

@@ -9,7 +9,6 @@ using AspnetRun.Core.Entities;
 using AspnetRun.Infrastructure.Data;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
-using AspnetRun.Web.ViewModels.Product;
 
 namespace AspnetRun.Web.Pages.Product
 {

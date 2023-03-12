@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AspnetRun.Web.ViewModels.Product
+namespace AspnetRun.Web.ViewModels
 {
-    public class BaseProductViewModel : BaseViewModel
+    public class ProductViewModel : BaseViewModel
     {
         public string ProductName { get; set; }
         public string QuantityPerUnit { get; set; }
@@ -15,5 +15,6 @@ namespace AspnetRun.Web.ViewModels.Product
         public short? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
         public int? CategoryId { get; set; }
+        public CategoryViewModel Category { get; set; }
     }
 }

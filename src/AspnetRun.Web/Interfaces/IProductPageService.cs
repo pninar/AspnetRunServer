@@ -1,5 +1,4 @@
 ﻿using AspnetRun.Web.ViewModels;
-using AspnetRun.Web.ViewModels.Product;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

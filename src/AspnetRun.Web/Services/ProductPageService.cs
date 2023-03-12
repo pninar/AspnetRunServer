@@ -2,7 +2,6 @@
 using AspnetRun.Application.Models;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
-using AspnetRun.Web.ViewModels.Product;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using System;
