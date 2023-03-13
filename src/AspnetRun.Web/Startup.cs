@@ -21,6 +21,7 @@ using AspnetRun.Core.Repositories;
 using AspnetRun.Core.Repositories.Base;
 using AspnetRun.Core.Configuration;
 using AspnetRun.Infrastructure.Repository.Base;
+using Kolgraph.Data;
 
 namespace AspnetRun.Web
 {
@@ -95,17 +96,20 @@ namespace AspnetRun.Web
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             // Add Application Layer
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IPatientService, PatientService>();
 
             // Add Web Layer
             services.AddAutoMapper(typeof(Startup)); // Add AutoMapper
             services.AddScoped<IIndexPageService, IndexPageService>();
             services.AddScoped<IProductPageService, ProductPageService>();
             services.AddScoped<ICategoryPageService, CategoryPageService>();
+            services.AddScoped<IPatientPageService, PatientPageService>();
 
             // Add Miscellaneous
             services.AddHttpContextAccessor();
@@ -118,6 +122,13 @@ namespace AspnetRun.Web
             // use in-memory database
             services.AddDbContext<AspnetRunContext>(c =>
                 c.UseInMemoryDatabase("AspnetRunConnection"));
+
+            var connectionString = Configuration.GetConnectionString("KolgraphConnectionString");
+            services.AddDbContext<KolgraphContext>(o =>
+            {
+                o.UseSqlServer(connectionString);
+                o.EnableSensitiveDataLogging();
+            });
 
             //// use real database
             //services.AddDbContext<AspnetRunContext>(c =>

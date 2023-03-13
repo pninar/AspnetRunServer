@@ -3,6 +3,7 @@ using AspnetRun.Core.Repositories;
 using AspnetRun.Core.Specifications;
 using AspnetRun.Infrastructure.Data;
 using AspnetRun.Infrastructure.Repository.Base;
+using Kolgraph.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,24 +13,24 @@ using System.Threading.Tasks;
 
 namespace AspnetRun.Infrastructure.Repository
 {
-    public class ProductRepository : Repository<Product>, IProductRepository
+    public class PatientRepository : Repository<Patient>, IPatientRepository
     {
-        public ProductRepository(AspnetRunContext dbContext) : base(dbContext)
+        public PatientRepository(KolgraphContext dbContext) : base(dbContext)
         {
         }
 
-        public async Task<IEnumerable<Product>> GetProductListAsync()
+        public async Task<IEnumerable<Patient>> GetPatientListAsync()
         {
-            var spec = new ProductWithCategorySpecification();
+            var spec = new PatientSpecification();
             return await GetAsync(spec);
 
             // second way
             // return await GetAllAsync();
         }
 
-        public async Task<IEnumerable<Product>> GetProductByNameAsync(string productName)
+        public async Task<IEnumerable<Patient>> GetPatientByNameAsync(string patientName)
         {
-            var spec = new ProductWithCategorySpecification(productName);
+            var spec = new PatientSpecification(patientName);
             return await GetAsync(spec);
 
             // second way
@@ -41,17 +42,9 @@ namespace AspnetRun.Infrastructure.Repository
             //    .ToListAsync();
         }
 
-        public async Task<IEnumerable<Product>> GetProductByCategoryAsync(int categoryId)
+        public override async Task<Patient> GetByIdAsync(int id)
         {
-            //return await _dbContext.Products
-            //    .Where(x => x.CategoryId==categoryId)
-            //    .ToListAsync();
-            return await GetAsync(x => x.CategoryId == categoryId);
-        }
-
-        public override async Task<Product> GetByIdAsync(int id)
-        {
-            var spec = new ProductWithCategorySpecification();
+            var spec = new PatientSpecification();
             return await base.GetByIdAsync(id, spec);
         }
     }

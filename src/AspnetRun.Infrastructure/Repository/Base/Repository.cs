@@ -13,9 +13,9 @@ namespace AspnetRun.Infrastructure.Repository.Base
 {
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        protected readonly AspnetRunContext _dbContext;
+        protected readonly DbContext _dbContext;
 
-        public Repository(AspnetRunContext dbContext)
+        public Repository(DbContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }

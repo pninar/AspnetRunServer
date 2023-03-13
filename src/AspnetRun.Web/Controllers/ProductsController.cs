@@ -27,7 +27,7 @@ namespace AspnetRun.Web.Controllers
         // GET: api/<ProductController>
         [HttpGet]
         public async Task<IEnumerable<ProductViewModel>> Get([FromQuery] string productName)
-       {
+        {
             var list = await _productPageService.GetProducts(productName);
             return list;
         }
@@ -42,10 +42,9 @@ namespace AspnetRun.Web.Controllers
 
         // POST api/<ProductController>
         [HttpPost]
-        public async Task<ProductViewModel> Post([FromBody] ProductViewModel productToCreate)
+        public async void Post([FromBody] ProductViewModel productToCreate)
         {
-            var product = await _productPageService.CreateProduct(productToCreate);
-            return product;
+            await _productPageService.CreateProduct(productToCreate);
         }
 
         // PUT api/<ProductController>/5
@@ -57,7 +56,7 @@ namespace AspnetRun.Web.Controllers
 
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
-        public async void  Delete(int id)
+        public async void Delete(int id)
         {
             var product = await _productPageService.GetProductById(id);
             await _productPageService.DeleteProduct(product);
