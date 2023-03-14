@@ -24,6 +24,7 @@ namespace AspnetRun.Application.Mapper
 
     public class AspnetRunDtoMapper : Profile
     {
+        // create a map between each model and its associated entity
         public AspnetRunDtoMapper()
         {
             CreateMap<Product, ProductModel>()
