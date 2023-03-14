@@ -26,10 +26,9 @@ namespace AspnetRun.Web.Controllers
 
         // GET: api/<PatientsController>
         [HttpGet]
-        [HttpGet]
-        public async Task<IEnumerable<PatientViewModel>> Get([FromQuery] string patientName)
+        public async Task<IEnumerable<PatientViewModel>> Get([FromQuery] string patientName, [FromQuery] int pageIndex)
         {
-            var list = await _patientPageService.GetPatients(patientName);
+            var list = await _patientPageService.GetPatients(patientName, pageIndex);
             return list;
         }
 

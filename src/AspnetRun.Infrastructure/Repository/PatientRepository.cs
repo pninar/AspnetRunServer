@@ -19,9 +19,9 @@ namespace AspnetRun.Infrastructure.Repository
         {
         }
 
-        public async Task<IEnumerable<Patient>> GetPatientListAsync()
+        public async Task<IEnumerable<Patient>> GetPatientListAsync(int pageIndex)
         {
-            var spec = new PatientSpecification();
+            var spec = new PatientSpecification(null, pageIndex);
             return await GetAsync(spec);
 
             // second way
@@ -30,7 +30,7 @@ namespace AspnetRun.Infrastructure.Repository
 
         public async Task<IEnumerable<Patient>> GetPatientByNameAsync(string patientName)
         {
-            var spec = new PatientSpecification(patientName);
+            var spec = new PatientSpecification(patientName, 0);
             return await GetAsync(spec);
 
             // second way

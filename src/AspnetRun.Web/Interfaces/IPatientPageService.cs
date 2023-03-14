@@ -6,7 +6,7 @@ namespace AspnetRun.Web.Interfaces
 {
     public interface IPatientPageService
     {
-        Task<IEnumerable<PatientViewModel>> GetPatients(string patientName);
+        Task<IEnumerable<PatientViewModel>> GetPatients(string patientName, int pageIndex);
         Task<PatientViewModel> GetPatientById(int productId);
         //Task<IEnumerable<ProductViewModel>> GetProductByCategory(int categoryId);
         //Task<IEnumerable<CategoryViewModel>> GetCategories();

@@ -1,0 +1,14 @@
+﻿Beyond this developments, also there are main components should be handled in Application layer;
+
+Authorization Management
+Validation Management
+Session Management
+Notification Management
+Exception Management
+So in this layer we have these cross-cutting activities which provide to manage your application. 
+You will authorize your application in this layer, 
+you should apply your validations in here, 
+you should manage application session and publish notifications from application layer with exception management.
+
+All validation , authorization, logging, exception handling etc. 
+— this kind of cross cutting activities should be handled by these classes.

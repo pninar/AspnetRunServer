@@ -22,9 +22,9 @@ namespace AspnetRun.Application.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<IEnumerable<PatientModel>> GetPatientList()
+        public async Task<IEnumerable<PatientModel>> GetPatientList(int pageIndex)
         {
-            var patientList = await _patientRepository.GetPatientListAsync();
+            var patientList = await _patientRepository.GetPatientListAsync(pageIndex);
             var mapped = ObjectMapper.Mapper.Map<IEnumerable<PatientModel>>(patientList);
             return mapped;
         }
@@ -36,7 +36,7 @@ namespace AspnetRun.Application.Services
             return mapped;
         }
 
-        public async Task<IEnumerable<PatientModel>> GetPatientByName(string patientName)
+        public async Task<IEnumerable<PatientModel>> GetPatientByName(string patientName, int pageIndex)
         {
             var patientList = await _patientRepository.GetPatientByNameAsync(patientName);
             var mapped = ObjectMapper.Mapper.Map<IEnumerable<PatientModel>>(patientList);

@@ -10,7 +10,7 @@ namespace AspnetRun.Core.Repositories
 {
     public interface IPatientRepository : IRepository<Patient>
     {
-        Task<IEnumerable<Patient>> GetPatientListAsync();
-        Task<IEnumerable<Patient>> GetPatientByNameAsync(string productName);
+        Task<IEnumerable<Patient>> GetPatientListAsync(int pageIndex);
+        Task<IEnumerable<Patient>> GetPatientByNameAsync(string patientName);
     }
 }

@@ -23,16 +23,16 @@ namespace AspnetRun.Web.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<IEnumerable<PatientViewModel>> GetPatients(string patientName)
+        public async Task<IEnumerable<PatientViewModel>> GetPatients(string patientName, int pageIndex)
         {
             if (string.IsNullOrWhiteSpace(patientName))
             {
-                var list = await _patientAppService.GetPatientList();
+                var list = await _patientAppService.GetPatientList(pageIndex);
                 var mapped = _mapper.Map<IEnumerable<PatientViewModel>>(list);
                 return mapped;
             }
 
-            var listByName = await _patientAppService.GetPatientByName(patientName);
+            var listByName = await _patientAppService.GetPatientByName(patientName, pageIndex);
             var mappedByName = _mapper.Map<IEnumerable<PatientViewModel>>(listByName);
             return mappedByName;
         }

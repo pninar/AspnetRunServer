@@ -37,6 +37,5 @@ on the Entity class which is also in the core project
 
  so, we have two basings on IRepository. i tried to remove one and got and error so both are necessary
 
- - question - i see the logging being used.
 
 
