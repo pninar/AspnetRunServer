@@ -92,7 +92,7 @@ namespace AspnetRun.Application.Services
 
         private void ValidatePatientIfNotExist(PatientModel patientModel)
         {
-            var existingEntity = _patientRepository.GetByIdAsync(patientModel.Id);
+            var existingEntity =  _patientRepository.GetByIdAsync(patientModel.Id);
             if (existingEntity == null)
                 throw new ApplicationException($"{patientModel.ToString()} with this id is not exists");
         }

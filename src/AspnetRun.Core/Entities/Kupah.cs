@@ -1,9 +1,10 @@
-﻿using System;
+﻿using AspnetRun.Core.Entities.Base;
+using System;
 using System.Collections.Generic;
 
 namespace AspnetRun.Core.Entities
 {
-    public partial class Kupah
+    public partial class Kupah : Entity
     {
         public Kupah()
         {

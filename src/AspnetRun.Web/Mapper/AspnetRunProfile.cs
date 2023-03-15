@@ -12,6 +12,8 @@ namespace AspnetRun.Web.Mapper
             CreateMap<ProductModel, ProductViewModel>().ReverseMap();
             CreateMap<CategoryModel, CategoryViewModel>().ReverseMap();
             CreateMap<PatientModel, PatientViewModel>().ReverseMap();
+            CreateMap<CityModel, CityViewModel>().ReverseMap();
+            CreateMap<KupahModel, KupahViewModel>().ReverseMap();
         }
     }
 }

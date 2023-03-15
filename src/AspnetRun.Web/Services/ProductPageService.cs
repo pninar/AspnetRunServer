@@ -80,7 +80,7 @@ namespace AspnetRun.Web.Services
                 throw new Exception($"Entity could not be mapped.");
 
             await _productAppService.Update(mapped);
-            _logger.LogInformation($"Entity successfully added - IndexPageService");
+            _logger.LogInformation($"Entity successfully updated - IndexPageService");
         }
 
         public async Task DeleteProduct(ProductViewModel productViewModel)

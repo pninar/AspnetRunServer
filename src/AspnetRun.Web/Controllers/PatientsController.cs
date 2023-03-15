@@ -1,6 +1,7 @@
 ﻿using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -34,9 +35,10 @@ namespace AspnetRun.Web.Controllers
 
         // GET api/<PatientsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<PatientViewModel> Get(int id)
         {
-            return "value";
+            var patient = await _patientPageService.GetPatientById(id);
+            return patient;
         }
 
         // POST api/<PatientsController>
@@ -45,16 +47,23 @@ namespace AspnetRun.Web.Controllers
         {
         }
 
-        // PUT api/<PatientsController>/5
+        //PUT api/<PatientsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async void Put(int id, [FromBody] PatientViewModel patientToModify)
         {
+            await _patientPageService.UpdatePatient(patientToModify);
         }
 
         // DELETE api/<PatientsController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        private bool PatientExists(int id)
+        {
+            var patient = _patientPageService.GetPatientById(id);
+            return patient != null;
         }
     }
 }

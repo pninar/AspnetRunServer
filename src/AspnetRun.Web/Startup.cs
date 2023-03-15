@@ -93,23 +93,29 @@ namespace AspnetRun.Web
 
             // Add Infrastructure Layer
             ConfigureDatabases(services);
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddTransient<IPatientRepository, PatientRepository>();
+            services.AddTransient<ICityRepository, CityRepository>();
+            services.AddTransient<IKupahRepository, KupahRepository>();
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             // Add Application Layer
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IPatientService, PatientService>();
+            services.AddTransient<IPatientService, PatientService>();
+            services.AddTransient<ICityService, CityService>();
+            services.AddTransient<IKupahService, KupahService>();
 
             // Add Web Layer
             services.AddAutoMapper(typeof(Startup)); // Add AutoMapper
             services.AddScoped<IIndexPageService, IndexPageService>();
             services.AddScoped<IProductPageService, ProductPageService>();
             services.AddScoped<ICategoryPageService, CategoryPageService>();
-            services.AddScoped<IPatientPageService, PatientPageService>();
+            services.AddTransient<IPatientPageService, PatientPageService>();
+            services.AddTransient<ICityPageService, CityPageService>();
+            services.AddTransient<IKupahPageService, KupahPageService>();
 
             // Add Miscellaneous
             services.AddHttpContextAccessor();
@@ -124,11 +130,29 @@ namespace AspnetRun.Web
                 c.UseInMemoryDatabase("AspnetRunConnection"));
 
             var connectionString = Configuration.GetConnectionString("KolgraphConnectionString");
+            //services.AddDbContext<KolgraphContext>(x => x.UseSqlServer(connectionString), ServiceLifetime.Transient);
+
+            //services.AddDbContext<KolgraphContext>(o =>
+            //{
+            //    o.UseSqlServer(connectionString);
+            //    o.EnableSensitiveDataLogging();
+            //});
+
+
+
+            //services.AddDbContext<KolgraphContext>(options =>
+            //{
+            //    options.UseSqlServer(connectionString,
+            //    sqlServerOptionsAction: sqlOptions =>
+            //    {
+            //        sqlOptions.EnableRetryOnFailure();
+            //    });
+            //});
             services.AddDbContext<KolgraphContext>(o =>
             {
                 o.UseSqlServer(connectionString);
                 o.EnableSensitiveDataLogging();
-            });
+            }, ServiceLifetime.Transient, ServiceLifetime.Transient);
 
             //// use real database
             //services.AddDbContext<AspnetRunContext>(c =>

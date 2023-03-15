@@ -3,6 +3,7 @@ using AspnetRun.Application.Models;
 using AspnetRun.Web.Interfaces;
 using AspnetRun.Web.ViewModels;
 using AutoMapper;
+using Kolgraph.Data;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace AspnetRun.Web.Services
         private readonly IMapper _mapper;
         private readonly ILogger<PatientPageService> _logger;
 
-        public PatientPageService(IPatientService patientAppService,IMapper mapper, ILogger<PatientPageService> logger)
+        public PatientPageService(IPatientService patientAppService, IMapper mapper, ILogger<PatientPageService> logger)
         {
             _patientAppService = patientAppService ?? throw new ArgumentNullException(nameof(patientAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -39,8 +40,8 @@ namespace AspnetRun.Web.Services
 
         public async Task<PatientViewModel> GetPatientById(int patientId)
         {
-            var product = await _patientAppService.GetPatientById(patientId);
-            var mapped = _mapper.Map<PatientViewModel>(product);
+            var patient = await _patientAppService.GetPatientById(patientId);
+            var mapped = _mapper.Map<PatientViewModel>(patient);
             return mapped;
         }
 
@@ -64,7 +65,7 @@ namespace AspnetRun.Web.Services
                 throw new Exception($"Entity could not be mapped.");
 
             await _patientAppService.Update(mapped);
-            _logger.LogInformation($"Entity successfully added - IndexPageService");
+            _logger.LogInformation($"Entity successfully updated - IndexPageService");
         }
 
         public async Task DeletePatient(PatientViewModel productViewModel)
