@@ -1,6 +1,7 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore;
 using AspnetRun.Core.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Kolgraph.Data
 {
@@ -27,11 +28,11 @@ namespace Kolgraph.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer("Data Source=MEROZ2012SERVER;Initial Catalog=Kolgraph;Integrated Security=True");
-//            }
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=MEROZ2012SERVER;Initial Catalog=Kolgraph;Integrated Security=True");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -561,9 +562,7 @@ namespace Kolgraph.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .HasColumnType("numeric(5, 0)")
-                    .HasComment("TRIAL")
-                    .ValueGeneratedOnAdd();
+                    .HasComment("TRIAL");
 
                 entity.Property(e => e.AdultAbr)
                     .HasColumnName("adult_abr")
@@ -861,7 +860,6 @@ namespace Kolgraph.Data
 
                 entity.Property(e => e.KupahId)
                     .HasColumnName("kupahId")
-                    .HasColumnType("numeric(5, 0)")
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.LastName)

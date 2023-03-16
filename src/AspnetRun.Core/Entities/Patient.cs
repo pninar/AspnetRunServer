@@ -25,7 +25,7 @@ namespace AspnetRun.Core.Entities
         public string Phone3Place { get; set; }
         public int? CityId { get; set; }
         public string Zip { get; set; }
-        public decimal? KupahId { get; set; }
+        public int? KupahId { get; set; }
         public string Notes { get; set; }
         public DateTime Dob { get; set; }
         public decimal Yob { get; set; }

@@ -11,7 +11,7 @@ namespace AspnetRun.Core.Entities
             Patient = new HashSet<Patient>();
         }
 
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public bool RequiresHitchayvut { get; set; }
         public bool HasMonthlyReport { get; set; }
