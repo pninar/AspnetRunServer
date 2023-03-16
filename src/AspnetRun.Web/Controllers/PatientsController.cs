@@ -43,15 +43,18 @@ namespace AspnetRun.Web.Controllers
 
         // POST api/<PatientsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task Post([FromBody] PatientViewModel patient)
         {
+            await _patientPageService.CreatePatient(patient);
+            return;
         }
 
         //PUT api/<PatientsController>/5
         [HttpPut("{id}")]
-        public async void Put(int id, [FromBody] PatientViewModel patientToModify)
+        public async Task Put(int id, [FromBody] PatientViewModel patient)
         {
-            await _patientPageService.UpdatePatient(patientToModify);
+            await _patientPageService.UpdatePatient(patient);
+            return;
         }
 
         // DELETE api/<PatientsController>/5

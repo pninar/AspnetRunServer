@@ -28,7 +28,7 @@ namespace AspnetRun.Core.Specifications
 
         public PatientSpecification() : base(null)
         {
-            AddPatientInclude();
+            //AddPatientInclude();
             //ApplyPaging(0, PageSize);
         }
 

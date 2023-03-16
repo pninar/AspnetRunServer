@@ -130,13 +130,7 @@ namespace AspnetRun.Web
                 c.UseInMemoryDatabase("AspnetRunConnection"));
 
             var connectionString = Configuration.GetConnectionString("KolgraphConnectionString");
-            //services.AddDbContext<KolgraphContext>(x => x.UseSqlServer(connectionString), ServiceLifetime.Transient);
-
-            //services.AddDbContext<KolgraphContext>(o =>
-            //{
-            //    o.UseSqlServer(connectionString);
-            //    o.EnableSensitiveDataLogging();
-            //});
+            
 
 
 

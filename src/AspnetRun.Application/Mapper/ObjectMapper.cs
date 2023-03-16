@@ -32,7 +32,22 @@ namespace AspnetRun.Application.Mapper
 
             CreateMap<Category, CategoryModel>().ReverseMap();
 
-            CreateMap<Patient, PatientModel>().ReverseMap();
+            CreateMap<Patient, PatientModel>()
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName.Trim()))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.Trim()))
+                .ForMember(dest => dest.CityId, opt => opt.MapFrom(src => src.CityId))
+                .ForMember(dest => dest.KupahId, opt => opt.MapFrom(src => src.KupahId))
+                .ForMember(dest => dest.Zehut, opt => opt.MapFrom(src => src.Zehut.Trim()));
+            //.ReverseMap();
+
+            CreateMap<PatientModel, Patient>()
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName.Trim()))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.Trim()))
+                .ForMember(dest => dest.CityId, opt => opt.MapFrom(src => src.CityId))
+                .ForMember(dest => dest.KupahId, opt => opt.MapFrom(src => src.KupahId))
+                .ForMember(dest => dest.Zehut, opt => opt.MapFrom(src => src.Zehut.Trim()));
+            //.ReverseMap();
+
             CreateMap<City, CityModel>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.Trim())).ReverseMap();
 

@@ -773,7 +773,6 @@ namespace Kolgraph.Data
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Address)
-                    .IsRequired()
                     .HasColumnName("address")
                     .HasMaxLength(100)
                     .IsUnicode(false)
@@ -781,7 +780,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.AddressPlace)
-                    .IsRequired()
                     .HasColumnName("addressPlace")
                     .HasMaxLength(15)
                     .IsUnicode(false)
@@ -789,7 +787,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Areacode1)
-                    .IsRequired()
                     .HasColumnName("areacode1")
                     .HasMaxLength(3)
                     .IsUnicode(false)
@@ -797,7 +794,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Areacode2)
-                    .IsRequired()
                     .HasColumnName("areacode2")
                     .HasMaxLength(3)
                     .IsUnicode(false)
@@ -805,7 +801,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Areacode3)
-                    .IsRequired()
                     .HasColumnName("areacode3")
                     .HasMaxLength(3)
                     .IsUnicode(false)
@@ -820,7 +815,6 @@ namespace Kolgraph.Data
                 entity.Property(e => e.CityId).HasColumnName("cityId");
 
                 entity.Property(e => e.Current)
-                    .IsRequired()
                     .HasColumnName("current")
                     .HasDefaultValueSql("((1))")
                     .HasComment("TRIAL");
@@ -831,7 +825,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Email)
-                    .IsRequired()
                     .HasColumnName("email")
                     .HasMaxLength(254)
                     .IsUnicode(false)
@@ -851,7 +844,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Gender)
-                    .IsRequired()
                     .HasColumnName("gender")
                     .HasMaxLength(1)
                     .IsUnicode(false)
@@ -871,7 +863,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Notes)
-                    .IsRequired()
                     .HasColumnName("notes")
                     .HasColumnType("text")
                     .HasComment("TRIAL");
@@ -882,7 +873,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Phone)
-                    .IsRequired()
                     .HasColumnName("phone")
                     .HasMaxLength(7)
                     .IsUnicode(false)
@@ -890,7 +880,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Phone2)
-                    .IsRequired()
                     .HasColumnName("phone2")
                     .HasMaxLength(7)
                     .IsUnicode(false)
@@ -898,7 +887,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Phone2Place)
-                    .IsRequired()
                     .HasColumnName("phone2Place")
                     .HasMaxLength(50)
                     .IsUnicode(false)
@@ -906,7 +894,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Phone3)
-                    .IsRequired()
                     .HasColumnName("phone3")
                     .HasMaxLength(7)
                     .IsUnicode(false)
@@ -914,7 +901,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Phone3Place)
-                    .IsRequired()
                     .HasColumnName("phone3Place")
                     .HasMaxLength(50)
                     .IsUnicode(false)
@@ -922,7 +908,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.PhonePlace)
-                    .IsRequired()
                     .HasColumnName("phonePlace")
                     .HasMaxLength(50)
                     .IsUnicode(false)
@@ -930,7 +915,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Sugzehut)
-                    .IsRequired()
                     .HasColumnName("sugzehut")
                     .HasMaxLength(1)
                     .IsUnicode(false)
@@ -952,7 +936,6 @@ namespace Kolgraph.Data
                     .HasComment("TRIAL");
 
                 entity.Property(e => e.Zip)
-                    .IsRequired()
                     .HasColumnName("zip")
                     .HasMaxLength(7)
                     .IsUnicode(false)
@@ -962,7 +945,6 @@ namespace Kolgraph.Data
                 entity.HasOne(d => d.Branch)
                     .WithMany(p => p.Patient)
                     .HasForeignKey(d => d.BranchId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_patient_branch");
 
                 entity.HasOne(d => d.City)

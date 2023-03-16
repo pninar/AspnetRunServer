@@ -60,7 +60,7 @@ namespace AspnetRun.Application.Services
 
         public async Task Update(PatientModel patientModel)
         {
-            ValidatePatientIfNotExist(patientModel);
+            await ValidatePatientIfNotExist(patientModel);
 
             var editPatient = await _patientRepository.GetByIdAsync(patientModel.Id);
             if (editPatient == null)
@@ -74,7 +74,7 @@ namespace AspnetRun.Application.Services
 
         public async Task Delete(PatientModel patientModel)
         {
-            ValidatePatientIfNotExist(patientModel);
+            await ValidatePatientIfNotExist(patientModel);
             var deletedPatient = await _patientRepository.GetByIdAsync(patientModel.Id);
             if (deletedPatient == null)
                 throw new ApplicationException($"Entity could not be loaded.");
@@ -90,9 +90,9 @@ namespace AspnetRun.Application.Services
                 throw new ApplicationException($"{patientModel.ToString()} with this id already exists");
         }
 
-        private void ValidatePatientIfNotExist(PatientModel patientModel)
+        private async Task ValidatePatientIfNotExist(PatientModel patientModel)
         {
-            var existingEntity =  _patientRepository.GetByIdAsync(patientModel.Id);
+            var existingEntity = await _patientRepository.GetByIdAsync(patientModel.Id);
             if (existingEntity == null)
                 throw new ApplicationException($"{patientModel.ToString()} with this id is not exists");
         }
